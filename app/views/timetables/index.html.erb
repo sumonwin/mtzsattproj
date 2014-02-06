@@ -1,0 +1,49 @@
+<h1>Listing timetables</h1>
+
+<table>
+  <tr>
+    <th>Jplevel</th>
+    <th>Classname</th>
+    <th>School</th>
+    <th>Starttime</th>
+    <th>Endtime</th>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturaday</th>
+    <th>Duration</th>
+    <th>Startdate</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @timetables.each do |timetable| %>
+  <tr>
+    <td><%= timetable.jplevel %></td>
+    <td><%= timetable.classname %></td>
+    <td><%= timetable.school %></td>
+    <td><%= timetable.starttime %></td>
+    <td><%= timetable.endtime %></td>
+    <td><%= timetable.sunday %></td>
+    <td><%= timetable.monday %></td>
+    <td><%= timetable.tuesday %></td>
+    <td><%= timetable.wednesday %></td>
+    <td><%= timetable.thursday %></td>
+    <td><%= timetable.friday %></td>
+    <td><%= timetable.saturaday %></td>
+    <td><%= timetable.duration %></td>
+    <td><%= timetable.startdate %></td>
+    <td><%= link_to 'Show', timetable %></td>
+    <td><%= link_to 'Edit', edit_timetable_path(timetable) %></td>
+    <td><%= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Timetable', new_timetable_path %>
