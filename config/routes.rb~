@@ -3,10 +3,8 @@ Attendanceproject::Application.routes.draw do
 
   resources :users
   resources :attendances
-  get "home/get"
   
   resources :timetables
-  resources :travelfees
 
 
   # The priority is based upon order of creation:

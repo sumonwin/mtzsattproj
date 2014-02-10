@@ -1,10 +1,5 @@
-<%= link_to 'Timetable', new_timetable_path %>
-<%= link_to 'Attendance', new_attendance_path %>
-<%= link_to 'Travelfee', new_travelfee_path %>
-<%= link_to 'User', new_user_path %>
-<br>
-<br>
-
+<h1>Listing attendances</h1>
+<%= link_to "Home", controller: "homes"%>
 
 <table>
   <tr>
@@ -16,7 +11,8 @@
     <th></th>
     <th></th>
   </tr>
-  <% @attendances.each do |attendance| %>
+
+<% @attendances.each do |attendance| %>
   <tr>
     <td><%= attendance.userid %></td>
     <td><%= attendance.date %></td>
@@ -27,11 +23,8 @@
     <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
-
-
 </table>
 
 <br />
 
 <%= link_to 'New Attendance', new_attendance_path %>
-

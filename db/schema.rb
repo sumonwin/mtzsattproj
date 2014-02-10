@@ -41,6 +41,34 @@ ActiveRecord::Schema.define(:version => 20140206114238) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "travelfees", :force => true do |t|
+    t.integer  "userid"
+    t.string   "classname"
+    t.date     "date"
+    t.integer  "travel_fee"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "userinputs", :force => true do |t|
+    t.integer  "jplevel"
+    t.string   "classname"
+    t.string   "school"
+    t.time     "starttime"
+    t.time     "endtime"
+    t.boolean  "sunday"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturaday"
+    t.float    "duration"
+    t.date     "startdate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.integer  "userid"
     t.string   "name"
