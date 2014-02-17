@@ -1,8 +1,11 @@
+require "users_controller"
 class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
+   # @attendances = Attendance.all
+    @users = User.all
+    @attendances= Attendance.paginate(:page=>params[:page],:per_page=>5).find(:all,:conditions=>["userid LIKE ? " , "%#{params[:userid]}%"])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +17,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/1.json
   def show
     @attendance = Attendance.find(params[:id])
-
+    @users = User.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @attendance }
@@ -24,6 +27,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/new
   # GET /attendances/new.json
   def new
+    @users = User.all
     @attendance = Attendance.new
 
     respond_to do |format|
@@ -34,6 +38,7 @@ class AttendancesController < ApplicationController
 
   # GET /attendances/1/edit
   def edit
+    @users = User.all
     @attendance = Attendance.find(params[:id])
   end
 
@@ -41,7 +46,7 @@ class AttendancesController < ApplicationController
   # POST /attendances.json
   def create
     @attendance = Attendance.new(params[:attendance])
-
+     @users = User.all
     respond_to do |format|
       if @attendance.save
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
@@ -57,7 +62,7 @@ class AttendancesController < ApplicationController
   # PUT /attendances/1.json
   def update
     @attendance = Attendance.find(params[:id])
-
+   # @users = User.all
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])
         format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
@@ -81,3 +86,4 @@ class AttendancesController < ApplicationController
     end
   end
 end
+

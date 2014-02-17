@@ -1,13 +1,14 @@
+require "users_controller"
+require "timetables_controller"
 class TravelfeesController < ApplicationController
-  #require 'will_paginate'
-  #require 'will_paginate/active_record'
+  
 
   # GET /travelfees
   # GET /travelfees.json
   def index
-    @travelfees = Travelfee.all
-    @travelfees=Travelfee.paginate(:page=>params[:page],:per_page=>10)
-
+    @users = User.all   
+    @travelfees = Travelfee.paginate(:page=>params[:page],:per_page=>5).find(:all,:conditions=>["userid LIKE ? " , "%#{params[:userid]}%"])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @travelfees }
@@ -19,7 +20,8 @@ class TravelfeesController < ApplicationController
   # GET /travelfees/1.json
   def show
     @travelfee = Travelfee.find(params[:id])
-
+    @users = User.all
+    @travelfee = Travelfee.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @travelfee }
@@ -29,6 +31,8 @@ class TravelfeesController < ApplicationController
   # GET /travelfees/new
   # GET /travelfees/new.json
   def new
+    @users = User.all
+    @timetables = Timetable.all
     @travelfee = Travelfee.new
 
     respond_to do |format|
@@ -45,8 +49,10 @@ class TravelfeesController < ApplicationController
   # POST /travelfees
   # POST /travelfees.json
   def create
+    @users= User.all
+    @timetables = Timetable.all
     @travelfee = Travelfee.new(params[:travelfee])
-
+    
     respond_to do |format|
       if @travelfee.save
         format.html { redirect_to @travelfee, notice: 'Travelfee was successfully created.' }
@@ -62,7 +68,7 @@ class TravelfeesController < ApplicationController
   # PUT /travelfees/1.json
   def update
     @travelfee = Travelfee.find(params[:id])
-
+   @users= User.all
     respond_to do |format|
       if @travelfee.update_attributes(params[:travelfee])
         format.html { redirect_to @travelfee, notice: 'Travelfee was successfully updated.' }

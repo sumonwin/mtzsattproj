@@ -1,5 +1,17 @@
 <h1>Listing attendances</h1>
 
+<%= form_tag attendances_path, :method => "get" do%>
+<table>
+ <tr>
+  <td>userid</td>
+  <td><%= select_tag :userid, options_for_select(@users.collect{|u| [u.userid,u.userid]}) %></td>
+  </tr>
+   <tr>
+  <td>Month</td>
+  <td><%= select_tag "month", options_for_select(%w[Jan Feb March April May June July Augest Sept Oct Nov Dec] )%></td>
+ </table>
+<%= submit_tag :find %>
+<% end %>
 
 <table>
   <tr>
@@ -16,8 +28,8 @@
   <tr>
     <td><%= attendance.userid %></td>
     <td><%= attendance.date %></td>
-    <td><%= attendance.reachtime %></td>
-    <td><%= attendance.leavetime %></td>
+    <td><%= attendance.reachtime.strftime("%H:%M:%S")%></td>
+    <td><%= attendance.leavetime .strftime("%H:%M:%S")%></td>
     <td><%= link_to 'Show', attendance %></td>
     <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
     <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,5 +38,5 @@
 </table>
 
 <br />
-
+<%= will_paginate @attendances %>
 <%= link_to 'New Attendance', new_attendance_path %>

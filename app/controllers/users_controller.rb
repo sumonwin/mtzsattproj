@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
    @users = User.paginate(:page=>params[:page],:per_page=>5).find(:all,:conditions=>["userid  LIKE ? && name LIKE ? && team LIKE ? " , "%#{params[:userid]}%","%#{params[:name]}%","%#{params[:team]}%"])
 
-
+   #@users = User.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
+    @users = User.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -38,13 +38,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    #@users = User.all
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+    # @users = User.all
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
+    #@users = User.all
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

@@ -1,5 +1,17 @@
 <h1>Listing timetables</h1>
-
+<%= form_tag timetables_path, :method => "get" do%>
+<table>
+ <tr>
+  <td>jplevel</td>
+  <td><%= select_tag "jplevel", options_for_select(%w[1 2 3 4 5]) %></td>
+ </tr>
+ <tr>
+  <td>Month</td>
+  <td><%= select_tag "month", options_for_select(%w[Win Momiji GIC])%></td>
+ </tr>
+ </table>
+<%= submit_tag :find %>
+<% end %>
 <table>
   <tr>
     <th>Jplevel</th>
@@ -45,5 +57,6 @@
 </table>
 
 <br />
+<%= will_paginate @users %>
 
 <%= link_to 'New Timetable', new_timetable_path %>

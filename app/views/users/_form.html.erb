@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= simple_form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :userid %><br />
-    <%= f.number_field :userid %>
+     <%= f.label :userid %><br />
+     <%= f.text_field :userid %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :dob %><br />
-    <%= f.date_select :dob %>
+    <%= f.date_select :dob,:start_year =>Time.now.year-110,:end_year=>Time.now.year %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
@@ -37,7 +37,10 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.check_box :gender %>
+    <%= f.label :gender,"Male",:value=>true %>
+    <%= f.radio_button:gender,"Male",:checked=>true %>
+    <%= f.label :gender,"Female",:value=>false %>
+    <%= f.radio_button:gender,"Female" %>
   </div>
   <div class="field">
     <%= f.label :team %><br />
@@ -59,7 +62,7 @@
     <%= f.label :leaveday %><br />
     <%= f.number_field :leaveday %>
   </div>
-  <div><%= f.label :email %><br />
+ <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
   <div><%= f.label :password %><br />
