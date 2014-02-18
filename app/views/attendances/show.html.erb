@@ -19,7 +19,40 @@
   <b>Leavetime:</b>
   <%= @attendance.leavetime %>
 </p>
+<% if ((@attendance.reachtime.strftime("%H:%M:%S") <= "08:30:00") && (@attendance.leavetime.strftime("%H:%M:%S") > "17:00:00")) %>
+     <h3>Attendance:Full Day</h3>
 
+     <p>
+     
+     <% if ((@attendance.leavetime.strftime("%H:%M:%S")>"17:30:00")) %>
+     <h3>Overtime:<%= Time.at((@attendance.leavetime.hour * 3600 + @attendance.leavetime.min * 60 + @attendance.leavetime.sec) - 63000).utc.strftime("%H:%M:%S") %> hours </h3>
+     
+     <%end%>
+     </p>
+    
+     
+     <% elsif ((@attendance.reachtime.strftime("%H:%M:%S") <= "08:30:00")&&((@attendance.leavetime.strftime("%H:%M:%S") >= "12:0:00")&&(@attendance.leavetime.strftime("%H:%M:%S" )<"17:0:00"))) %>
+    <h3>Attendance:Half Day1</h3>
+     <% else %>
+          <% if (((@attendance.reachtime.strftime("%H:%M:%S") > "08:30:00")&&(@attendance.reachtime.strftime("%H:%M:%S") <="13:0:00"))&&(@attendance.leavetime.strftime("%H:%M:%S") >="17:00:00")) %>
+          <h3>Attendance:Half Day2</h3>
+          <p>
+          
+          <% if @attendance.leavetime.strftime("%H:%M:%S")>"17:30:00"%>
+          <h3>Overtime:<%= Time.at((@attendance.leavetime.hour * 3600 + @attendance.leavetime.min * 60 + @attendance.leavetime.sec) - 63000).utc.strftime("%H:%M:%S") %> hours </h3>
+         
+     <%end%>
+     </p>
+          <% else %>Absent
+          <%end%>
+   <%end%>
+     
+</p>
 
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
+<p>
+Day : <%= @attendance.date.wday %>
+</p>
+
+  
+   <%= link_to 'Edit', edit_attendance_path(@attendance) %> |
 <%= link_to 'Back', attendances_path %>

@@ -13,10 +13,10 @@
 
   <div class="field">
     
-    <%= f.input :userid, :as => :select,:collection => @users.map{ |u| [u.userid,u.userid]} %>
+    <%= f.input :userid, :as => :select, :collection => @users.map{ |u| [u.userid,u.userid]} %>
   </div>
   <div class="field">
-    <%= f.input :classname, :as => :select,:collection => @timetables.map { |u| [u.classname,u.classname]} %> 
+    <%= f.input :classname, :as => :select, :collection => @timetables.map { |u| [u.classname,u.classname]} %> 
   </div>
   <div class="field">
     <%= f.label :date %><br />

@@ -16,6 +16,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/1
   # GET /attendances/1.json
   def show
+    #@timetable = Timetable.find(params[:id])
     @attendance = Attendance.find(params[:id])
     @users = User.all
     respond_to do |format|

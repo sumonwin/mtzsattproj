@@ -1,6 +1,9 @@
 class Attendance < ActiveRecord::Base
   attr_accessible :date, :leavetime, :reachtime, :userid
   belongs_to :user
+ #has_many :travelfees
+  #has_many :timetables, :through => :attendances
+
   validates:userid,numericality:{only_integer:true},presence:true
   validates:reachtime,presence:true
   validates:leavetime,presence:true

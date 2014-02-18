@@ -3,21 +3,17 @@
 
 <%=form_tag travelfees_path, :method => "get" do %>
 <table>
-<tr>
- <td>
-   userid
-  </td>
- <td>
-   <%= select_tag :userid, options_for_select(@users.collect{|u| [u.userid,u.userid]}) %>
- </td>
-</tr>
-<tr>
- <td>From Date</td>
- <td><%= date_select :date,params[:date] %></td>
-</tr>
- <td>End Date</td>
- <td><%= date_select :date,params[:date] %></td>
-</tr>
+ <tr>
+  <td>userid </td>
+  <td><%= select_tag :userid, options_for_select(@users.collect{|u| [u.userid,u.userid]}) %></td>
+ </tr>
+ <tr>
+  <td>From Date</td>
+  <td><%= date_select :date,params[:date] %></td>
+ </tr>
+  <td>End Date</td>
+  <td><%= date_select :date,params[:date] %></td>
+ </tr>
 </table>
 <%= submit_tag :find %>
 <% end %>

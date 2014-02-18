@@ -11,7 +11,7 @@ class TravelfeesController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @travelfees }
+      format.json { render json: @travelfees , json: @users }
 
     end
   end
